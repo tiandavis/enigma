@@ -24,7 +24,7 @@ Front End:
 
 Back End
 * [Ruby] - a dynamic, elegant open source programming language
-* [Rails 4] - a web framework built on ruby and optimized for programmer happiness
+* [Rails] - a web framework built on ruby and optimized for programmer happiness
 * [RSpec] - a BDD/TDD framework for testing Ruby code
 * [FactoryGirl] - a library for setting up Ruby objects as test data
 * [Capybara] - an acceptance test framework for web applications 
