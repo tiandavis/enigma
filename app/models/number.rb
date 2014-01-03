@@ -40,8 +40,8 @@ class Number
   
   # decode: method to decode secret hex value
   def decode hi_byte, lo_byte
-    # combine the hi and lo bytes to form single buyte
-    byte = hi_byte + lo_byte
+    # combine the hi and lo bytes to form single byte
+    byte = [hi_byte, lo_byte].join ""
 
     # convert hex to binary and
     binary = byte.to_i(16).to_s(2)
