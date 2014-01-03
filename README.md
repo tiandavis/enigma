@@ -38,6 +38,7 @@ git clone https://github.com/tiandavis/enigma.git
 cd enigma
 bundle install
 rails server
+http://localhost:3000
 ```
 
 RSpec Test Suite
