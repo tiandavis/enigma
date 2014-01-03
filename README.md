@@ -70,7 +70,7 @@ Contributions are great, but I'm serious about code quality. Any pull request wi
 [Jasmine]:http://pivotal.github.io/jasmine/
 [Sinon]:http://sinonjs.org/
 [Ruby]:https://www.ruby-lang.org/en/
-[Rails 4]:http://rubyonrails.org/
+[Rails]:http://rubyonrails.org/
 [RSpec]:http://rspec.info/
 [FactoryGirl]:https://github.com/thoughtbot/factory_girl
 [Capybara]:http://jnicklas.github.io/capybara/
