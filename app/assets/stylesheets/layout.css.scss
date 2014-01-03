@@ -1,0 +1,34 @@
+/* [3. Layout] */
+
+html{ min-height: 100%; height: 100%; }
+
+body.loading    { background: url(image-path("preloader.gif")) center center no-repeat; min-height: 100%; height: 100%; }
+body.loading *  { display: none; }
+body            { background-color: #343434; font-family: 'Signika Negative', sans-serif; color: #fff; }
+
+#header                         { z-index: 23; position: relative; width: 100%; background-color: #1E1E1E; }
+
+#header > div                   { padding: 16px 40px; overflow: hidden; }
+#header > div > .aislogo        { margin-top: 8px; float: left; }
+
+#header > div > .close          { background: url(image-path("close.png")) 0 0 no-repeat; width: 18px; height: 17px; float: right; margin: 8px 0 0 28px; cursor: pointer; }
+#header > div > .close:hover    { background-position: -27px 0; }
+
+#header > div > .purchase       { float: right; padding: 0 23px; border-radius: 3px; color:#fff; text-decoration: none; line-height: 34px; font-weight: 500; font-size: 20px; background-color: #A01414; }
+#header > div > .purchase:hover { background-color: #c24343; }
+
+#wrap               { position: relative; z-index: 1; }
+
+#main               { position: relative; padding-bottom: 50px; }
+
+#content            { max-width: 1130px; padding: 90px 50px 0; margin: 0 auto 100px; }
+#content > aside    { float: left; width: 549px; min-height: 1px; }
+
+#maincontent        { overflow: hidden; }
+#maincontent > p    { font-size: 17px; line-height: 23px; max-width: 395px; margin-bottom: 65px; font-weight: 300; color:#fff; }
+
+#footer             { padding: 10px 0px 42px; overflow: hidden; position: absolute; left: 0; bottom: 0; -moz-box-sizing: border-box;  box-sizing: border-box; width: 100%; }
+#footer > .right-col{ float: right; width: 50%; }
+
+#scrolltop          { background-image: url(image-path("scrolltop.png")); background-position: center center; background-repeat: no-repeat; background-color: #3e3e3e; border-radius: 5px; width: 50px; height: 50px; position: fixed; left: 40px; bottom: 95px; z-index: 10; display: none; }
+#scrolltop:hover    { background-color: #161311; }

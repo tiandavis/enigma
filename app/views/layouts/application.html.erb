@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>We are working on something awesome</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+	<%= csrf_meta_tags %>
+</head>
+<body id="enigma" class="loading">
+    <div id="wrap">
+
+        <div id="main">
+            <section id="content">
+                <aside>
+                    <a href="#" class="logo">
+                        <%= image_tag "logo.png", :class => "none" %>
+                        <span id="logo-text">◎</span>
+                    </a>
+                </aside>
+
+                <article id="maincontent" class="numbers">
+                    <h1>We are working on something awesome</h1>
+                    <p>
+					    Directions: 1) Declare an integer value to encode (e.g. "int: 8191" encodes to 7F7F) or 2) Declare a hex value to decode (e.g. "hex: 5000" decodes to 2048). Try it!
+						<div class="feed-form number-form number-view">
+							<%= yield :number_input %>
+
+							<div class="success-block"></div>
+	                	</div>
+					</p>
+					
+	
+                    <nav class="icons">
+                        <a href="#newsletter" data-icon="b" class="icon"></a>
+                        <a href="#map_canvas" data-icon="a" class="icon"></a>
+                    </nav>
+				
+                    <div id="countdown">
+						<%= yield :number_results %>
+					</div>
+                </article>
+            </section>
+
+            <footer id="footer">
+                <div class="right-col">
+                    <nav class="followers">
+                        <a href="http://techoctave.com">Company</a>
+                        <a href="http://techoctave.com/charts">charts</a>
+						<a href="http://techoctave.com/gauges">gauges</a>
+						<a href="http://techoctave.com/simulation">simulation</a>
+						<a href="http://techoctave.com/c7">blog</a>
+                        <a href="http://twitter.com/tiandavis">twitter</a>
+                    </nav>
+                    <nav class="slides-navigation">
+                        <a class="icon prev" data-icon="c" href="#"></a>
+                        <a class="icon next" data-icon="d" href="#"></a>
+                    </nav>
+                </div>
+                <p class="copyrights">Made by <a href="http://techoctave.com/">TechOctave</a></p>
+            </footer>
+        </div><!-- /#main -->
+
+        <section id="newsletter" class="">
+            <article>
+                <aside>
+                    <h2>Get the latest Ruby news!</h2>
+                    <p>If you're reading this, you're already one of the top 10% of developers. You already know there is always more to learn. That's where we come in. Subscribe to our blog.</p>
+                </aside>
+                <div class="feed-form">
+					<form action="http://feedburner.google.com/fb/a/mailverify?uri=techoctave" method="post" target="popupwindow" onsubmit="">
+					    <input name="EMAIL" placeholder="Enter your email here" required type="email">
+						<input type="hidden" value="techoctave" name="uri"/>
+						<input type="hidden" name="loc" value="en_US"/>
+					    <input type="submit" value="">
+					</form>
+					<div class="success-block"></div>
+                </div>
+            </article>
+        </section>
+
+        <div id="map_canvas" class=""></div>
+
+    </div><!-- /#wrap -->
+
+
+    <div id="slides">
+        <div class="slides-container">
+			<%= image_tag "001.jpg" %>
+			<%= image_tag "002.jpg" %>
+			<%= image_tag "003.jpg" %>
+			<%= image_tag "004.jpg" %>
+        </div>
+    </div>
+
+    <a href="#" id="scrolltop"></a>
+
+<%= javascript_include_tag "jquery", "data-turbolinks-track" => true %>
+<%= javascript_include_tag "http://maps.google.com/maps/api/js?v=3.13&sensor=false" %>
+<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+</body>
+</html>

@@ -1,0 +1,246 @@
+jQuery(document).ready(function($) {
+ 
+var AppView = Backbone.View.extend({
+	el: $("#enigma"),
+	
+	options: {
+        locations: [39.967278, -83.006843],  // Lat-Lng position to center the map on
+        zoom : 12,                          // Maps zoom ( 1 <= zoom <= 16 )
+        sliderFx: 'fade',			        // Slider effect. Can be 'slide' or 'fade'
+        sliderInterval: 8000,		        // Interval between image change. Set 0 to disable auto slideshow
+        sliderSpeed: 500,			        // Speed of the slider effect in milliseconds
+        countdownTo: '2014/02/01',	        // Change this in the format: 'YYYY/MM/DD'
+        speedAnimation: 600,                // Default speed of the animation
+        infoBoxName: 'TechOctave, LLC',         // Write the actual name in InfoBox
+        infoBoxImg: '<%= asset_path("map-label.png") %>', // Path for changing logo in map infoBox
+        infoBoxDescription: '250 West St, Ste 180<br>' +
+                            'Columbus, OH 43215<br>' +
+                            'United States ',   // write the actual address in Infobox
+        infoBoxUrl: 'http://techoctave.com/',      // write the actual url in InfoBox
+        infoBoxUrlText: 'techoctave.com',      // write the url text
+		mapMarker: '<%= asset_path("map-marker.png") %>', // path for changing map marker
+		successText: 'Thanks. You have successfully subscribed. Please check email to confirm.', // text after successful subscribing
+		errorText: 'Please, enter a valid email' // text, if email is invalid
+    },
+	
+	initialize: function() {
+		// Set instance app view properties
+		this.body = $(document.body);
+        this.wrapper = $('#wrap');
+        this.main = $('#main')
+        this.header = $('#header');
+        this.slider = $('#slides');
+        this.sliderNav = $('.slides-navigation');
+        this.timer = "";//$('#countdown');
+        this.scrollTop = $('#scrolltop');
+        this.content = $('#content');
+        this.maincontent = $('#maincontent');
+        this.footer = $('#footer');
+        this.newsletter = $('#newsletter');
+		this.canvas = $('#map_canvas');
+        this.subscribeForm = this.newsletter.find('form');
+        this.icons = $('.icons');
+        this.close = $('#header .close');
+
+        this.body.addClass('loading');
+
+		$("body").removeClass('loading');
+        this.mapFunction();
+        this.activate();
+        this.footerRightWidth();
+        this.mainHeight();
+		
+		$(window).scroll(this.show_scroll_top);
+    },
+
+	events: {
+		
+    },
+
+	show_scroll_top: function(e) {
+		if ($(this).scrollTop() > 100) // after scrolling 100px scrollTop arrow is visible
+            $('#scrolltop').fadeIn();
+        else
+            $('#scrolltop').fadeOut();
+    },
+
+	activate: function (e) {
+        var instance = this;
+
+        // Activate the slider
+        if (this.slider.length == 1) {
+            this.slider.superslides({
+                animation: instance.options.sliderFx,
+                play: instance.options.sliderInterval,
+                animation_speed: instance.options.sliderSpeed
+            });
+
+            if (this.slider.find('img').length <= 1) {
+                this.sliderNav.hide();
+            }
+        }
+
+        // Run the countdown
+        if (this.timer.length == 1) {
+            this.timer.countdown(instance.options.countdownTo, function (event) {
+                $(this).html(event.strftime(
+                    '<div><span>%D</span> <ins>day%!D</ins></div>' + '<div><span>%H<i>:</i></span><ins class="cd1">countdown</ins></div>' + '<div><span>%M<i>:</i></span></div>' + '<div><span>%S</span></div>'+'<ins class="cd2">countdown</ins>'));
+            });
+        }
+
+        // scrollTop function
+        if (this.scrollTop.length == 1) {
+            this.scrollTop.click(function(e){
+                $('html, body').stop(true,true).animate({ scrollTop: 0 }, instance.options.speedAnimation);
+                e.preventDefault();
+            });
+        }
+
+        // Activate the subscribe form
+        if(this.subscribeForm.length == 1) {
+            this.subscribeForm.find('input[type=email]').on('keyup', function(){
+                if ($('.success-block').is(':visible'))
+                    $('.success-block').css('display','none');
+            });
+        }
+
+        // action for click icons
+        if (this.icons.length == 1){
+            var a = this.icons.children();
+			
+			a.each(function(e){
+				var url = $(this).attr('href');
+				
+				if ($(url).hasClass('none')) {
+					$('a[href="#'+$(url).attr('id')+'"]').hide();
+				}					
+			});
+			
+			if (!instance.canvas.length) {
+				$('a[href="'+instance.canvas.selector+'"]').hide();
+			}
+				
+			if (!instance.newsletter.length) {
+				$('a[href="'+instance.newsletter.selector+'"]').hide();
+			}
+			
+            a.on('click', function() {
+                var self = $(this),
+                    topPos = $(self.attr('href')).offset().top;
+
+                $('html, body').animate({ scrollTop : topPos }, instance.options.speedAnimation);
+				
+                return false;
+            });
+
+        }
+
+        if (this.close.length == 1){
+            var instance = this;
+
+            this.close.on('click', function(){
+               instance.header.slideUp(instance.options.speedAnimation, function(){
+                   instance.mainHeight();
+               });
+
+                return false;
+            });
+        }
+    },
+
+	mapFunction: function() {
+        var map;
+        var x = this.options.locations[0];
+        var y = this.options.locations[1];
+
+		if (this.canvas.length == 1) {
+		
+			var myOptions = {
+				zoom: this.options.zoom,
+				scrollwheel: false,
+				navigationControl: false,
+				mapTypeControl: false,
+				scaleControl: false,
+				draggable: true,
+				mapTypeId: google.maps.MapTypeId.ROADMAP,
+				center: new google.maps.LatLng(x, y)
+			};
+			
+			map = new google.maps.Map(document.getElementById('map_canvas'),
+				myOptions);
+
+			this.canvas.height($(window).height());
+
+			var image = this.options.mapMarker;
+			var marker = new google.maps.Marker({
+				position: map.getCenter(),
+				map: map,
+				icon: image
+			});
+
+			var boxText = document.createElement("div");
+			boxText.innerHTML = "<div class='ib-inner'>" +
+				"<img src='"+this.options.infoBoxImg+"' alt=''>" +
+				"<article><p>" +
+				"<strong>"+this.options.infoBoxName+"</strong>" +
+				"<br>"+this.options.infoBoxDescription+"</p>" +
+				"<a href='"+this.options.infoBoxUrl+"' target='_blank'>"+this.options.infoBoxUrlText+"</a>" +
+				"</article>" +
+				"</div>";
+
+			var myOptions1 = {
+				content: boxText,
+				disableAutoPan: false,
+				pixelOffset: new google.maps.Size(10, 0),
+				boxClass: 'map-box',
+				alignBottom: true,
+				closeBoxURL: '<%= asset_path("map-close.png") %>',
+				pane: "floatPane"
+			};
+
+			var ib = new InfoBox(myOptions1);
+
+			ib.open(map, marker);
+
+			google.maps.event.addListener(marker, "click", function() {
+				ib.open(map, marker);
+			});
+		}
+    },
+
+	footerRightWidth: function() {
+        var instance = this,
+            mcWidth = instance.maincontent.width(),
+            winWidth = $(window).width(),
+            cWidth = instance.content.width(),
+            fpr = parseFloat(instance.footer.css('padding-right').replace('px',''));
+
+        if (winWidth >= 768)
+            instance.footer.find(' > .right-col').width(mcWidth + (winWidth - cWidth)/2 - fpr);
+    },
+
+	mainHeight: function(){
+        var instance = this,
+            winHeight = $(window).height() - 50,
+            headerHeight = instance.header.height();
+        if (instance.header.is(':visible')) {
+            instance.main.css('minHeight', winHeight - headerHeight);
+        } else {
+            instance.main.css('minHeight', winHeight);
+        }
+    }
+});
+
+_.templateSettings = {
+  interpolate: /\{\{(.+?)\}\}/g
+};
+
+window.appView = new AppView();
+
+$(window).resize(function() {
+    window.appView.footerRightWidth();
+    window.appView.mainHeight();
+	window.appView.canvas.height($(window).height());
+});
+
+});//document.ready

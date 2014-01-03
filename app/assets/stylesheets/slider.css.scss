@@ -1,0 +1,13 @@
+/* [4. Slider] */
+
+#slides                                 { position: fixed; z-index: 0; left: 0; top: 0; }
+
+#slides .slides-container               { display: none; }
+#slides .slides-container > div:before  { background: url(image-path("pattern.png")) 0 0 repeat; left: 0; content: ""; height: 100%; position: absolute; width: 100%; z-index: 3; }
+#slides .slides-container > div:after   { background-color: #6D5333; opacity: 0; filter: alpha(opacity=0); left: 0; content: ""; height: 100%; position: absolute; width: 100%; z-index: 3; }
+
+/* Slides-navigation */
+
+.slides-navigation          { margin-top: -6px; float: right; margin-right: 50px; }
+.slides-navigation a        { display: inline-block; margin-left: 13px; color:#C8BEA4; font-size: 30px; margin-top: -3px; }
+.slides-navigation a:hover  { color:#F2DDA2; }

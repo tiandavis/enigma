@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Jasmine Test Runner</title>
+  <link rel="stylesheet" type="text/css" href="vendors/jasmine-1.0.2/jasmine.css">
+
+  <script type="text/javascript" src="../../app/assets/javascripts/vendors/jquery.js"></script>
+  <script type="text/javascript" src="../../app/assets/javascripts/vendors/underscore.js"></script>
+  <script type="text/javascript" src="../../app/assets/javascripts/vendors/backbone.js"></script>
+  <script type="text/javascript" src="vendors/jasmine-1.0.2/jasmine.js"></script>
+  <script type="text/javascript" src="vendors/jasmine-1.0.2/jasmine-html.js"></script>
+  <script type="text/javascript" src="vendors/sinon-1.7.3.js"></script>
+  <script type="text/javascript" src="vendors/jasmine-sinon.js"></script>
+  <script type="text/javascript" src="vendors/jasmine-jquery.js"></script>
+
+  <!-- include source files here... -->
+  <script type="text/javascript" src="../../app/assets/javascripts/models/number.js"></script>
+  <script type="text/javascript" src="../../app/assets/javascripts/collections/numbers.js"></script>
+  <script type="text/javascript" src="../../app/assets/javascripts/views/number_view.js"></script>
+
+  <!-- include spec files here... -->
+  <script type="text/javascript" src="models/number_spec.js"></script>
+  <script type="text/javascript" src="views/number_view_spec.js"></script>
+
+</head>
+<body>
+
+<script type="text/javascript">
+  jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
+  jasmine.getEnv().execute();
+</script>
+
+</body>
+</html>

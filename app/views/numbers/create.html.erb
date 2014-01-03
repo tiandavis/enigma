@@ -1,0 +1,7 @@
+<% content_for :number_input do %> 
+<%= render :partial => "numbers/number_input" %>
+<% end %>
+
+<% content_for :number_results do %> 
+<div><span id="number_results"><%= @number.value %></span> <ins>data conversion results</ins></div>
+<% end %>

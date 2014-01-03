@@ -1,0 +1,9 @@
+/* [8. footer_line] */
+
+.copyrights             { font-size: 14px; color:#baad8b; font-weight: 300; float: left; margin-left: 50px; }
+.copyrights > a         { color:#baad8b; text-decoration: none; }
+.copyrights > a:hover   { color:#fff; }
+
+.followers              { text-transform: uppercase; float: left; }
+.followers > a          { font-size: 14px; color:#f1dca2; text-decoration: none; display: inline-block; margin-right: 14px; }
+.followers > a:hover    { color:#fff; }

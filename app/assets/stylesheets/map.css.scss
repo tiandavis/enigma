@@ -1,0 +1,15 @@
+/* [10. Map] */
+
+#map 			{ height: 615px; overflow: hidden; width: 100%; }
+#map_canvas  	{ width: 100%; }
+
+.map-box                { width: 300px; opacity: 0.95; filter: alpha(opacity=95); }
+.map-box > img 	{ top: 14px; right: 13px; }
+
+.ib-inner       	{ padding: 25px; border-radius: 6px; background-color: #232323; }
+.ib-inner img 	{ margin-top: 3px; float: left; }
+
+.ib-inner > article     		{ margin-left: 54px; font-weight: 300; }
+.ib-inner > article p   		{ padding-bottom: 15px; }
+.ib-inner > article a   		{ font-size: 16px; color:#f2dca1; text-decoration: none; }
+.ib-inner > article a:hover	{ color:#fff; }

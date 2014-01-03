@@ -1,0 +1,39 @@
+/* [9. Newsletter] */
+
+#newsletter                         { background-color: #242424; opacity: 0.98; filter: alpha(opacity=95); padding: 120px 50px; overflow: hidden; }
+#newsletter > article               {   max-width: 1130px;  margin: 0 auto; }
+#newsletter > article > aside       { float: left; width: 549px; }
+#newsletter > article > aside > p   { font-size: 17px; line-height: 23px; max-width: 410px; font-weight: 300; }
+
+/* Feedform */
+
+.feed-form                      { overflow: hidden; padding-top: 57px; }
+.number-form                { padding-top: 0; }
+
+.feed-form .validatr-message    { font-size: 16px; color:#d24e4e; background-color: transparent !important; border-radius: 0 !important; border: 0 !important; padding: 0 !important;  font-weight: 300; margin-top: 40px; }
+
+.feed-form .success-block       { font-size: 16px; color:#f2dca1; font-weight: 300; padding-top: 11px; }
+.feed-form .success-block a     { color:#f2dca1; }
+
+.feed-form > form               { display: block !important;  height: 54px !important;  }
+
+.feed-form input[type="email"], .feed-form input[type="text"]  { padding: 0 4%; height: 54px; background-color: #fff; border-radius: 3px 0 0 3px; font-size: 20px; color:#5e4931; font-weight: 300; width: 78%; float: left; border: 0; font-family: 'Signika Negative', sans-serif; position: relative; }
+
+.feed-form input[type="submit"] { 
+	width: 14%; height: 54px; 
+	background-image: url(image-path("ico-newsletter.png")); 
+	background-position: center center; 
+	background-repeat: no-repeat; 
+	border: 0; 
+	cursor: pointer; 
+	border-radius: 0 3px 3px 0; 
+	float: left; 
+	position: relative; 
+	background-color: #ffd565; 
+}
+
+.number-form input[type="submit"] { 
+	background-image: url(image-path("map-marker.png")); 
+}
+
+.feed-form input[type="submit"]:hover { background-color: #fabf20; }

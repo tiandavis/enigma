@@ -1,0 +1,4 @@
+<%= form_for @number do |f| %>
+  <%= f.text_field :value, :placeholder => "Enter an integer or hex value", :required => "true" %>
+  <%= f.submit "", :id => "process_number" %>
+<% end %>
